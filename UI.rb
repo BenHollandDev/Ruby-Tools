@@ -1,50 +1,81 @@
 #
-# Copyright (c) 2015 by Ben Holland. All Rights Reserved.
+# Copyright (c) 2015 by Ben Holland and Johnny Shepherd. All Rights Reserved.
 #
 
 Shoes.app(title: "Number Tools UI", width: 500, height: 500) do
-
- background "#ADECD2".."#D7423C"
-
- stack() do
+ background "#A70300".."#71D8C0"
 
 
+stack() do
 
-   # Make this work
-   flow() do
-   @button_plus = button "Click to add"
-   @button_minus = button "Click to Substract"
-   @reset_button = button "Reset"
-   end
-   @number = 0
-   @label = para "You have clicked #{@number} times!"
+  @talk_count = 0
+  @laugh_count = 0
 
-   @button_minus.click{
-    @number = @number - 1
-    @label.replace("You have clicked #{@number} times!")
+  flow() do
 
-   }
-   @button_plus.click{
-    @number = @number + 1
-    @label.replace("You have clicked #{@number} times!")
+    @talk = button "talk"
+    @laugh = button "laugh"
+    @reset = button "Reset"
 
-   }
-
-   @reset_button.click {
-    @number = 0
-    @label.replace("You have clicked #{@number} times!")
-
-   }
+  end
 
 
 
+  @label_laugh = para "You Have not laugh"
+  @label_talk = para "You Have not talk."
+  #On Click
+
+  @talk.click {
+    @talk_count = @talk_count + 1
+
+    @label_talk.replace("You have talk #{@talk_count} times.")
+
+    if @talk_count == 3
+      @label_talk.replace("Go Home!")
+
+    end
+
+  }
+
+  @laugh.click {
+    @laugh_count = @laugh_count + 1
+
+    @label_laugh.replace("You have laughed #{@laugh_count} times.")
+
+    if @laugh_count == 3
+      @label_laugh.replace("Stop laughing!")
+
+    end
+
+  }
+
+  @reset.click {
+
+    @laugh_count = 0
+
+    @label_laugh.replace("You have laughed #{@laugh_count} times.")
+
+    @talk_count = 0
+
+    @label_talk.replace("You have talk #{@talk_count} times.")
+
+
+
+  }
+
+
+
+
+
+end
 
 
 
 
 
 
- end
+
+
 
 
 
